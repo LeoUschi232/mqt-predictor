@@ -38,7 +38,7 @@ def test_predictor_env_esp_error() -> None:
 def test_predictor_env_hellinger_error() -> None:
     """Test the predictor environment with the Estimated Hellinger Distance as figure of merit and a missing model."""
     with pytest.raises(
-        ValueError, match=re.escape("Missing trained model for Hellinger distance estimates on ibm_montreal.")
+            ValueError, match=re.escape("Missing trained model for Hellinger distance estimates on ibm_montreal.")
     ):
         rl.Predictor(figure_of_merit="estimated_hellinger_distance", device_name="ibm_montreal")
 
@@ -58,10 +58,10 @@ def test_qcompile_with_newly_trained_models() -> None:
     model_path = Path(rl.helper.get_path_trained_model() / (model_name + ".zip"))
     if not model_path.exists():
         with pytest.raises(
-            FileNotFoundError,
-            match=re.escape(
-                "The RL model 'model_expected_fidelity_ionq_harmony' is not trained yet. Please train the model before using it."
-            ),
+                FileNotFoundError,
+                match=re.escape(
+                    "The RL model 'model_expected_fidelity_ionq_harmony' is not trained yet. Please train the model before using it."
+                ),
         ):
             rl.qcompile(qc, figure_of_merit=figure_of_merit, device_name=device)
 
@@ -81,4 +81,4 @@ def test_qcompile_with_false_input() -> None:
     with pytest.raises(ValueError, match=re.escape("figure_of_merit must not be None if predictor_singleton is None.")):
         rl.helper.qcompile(qc, None, "quantinuum_h2")
     with pytest.raises(ValueError, match=re.escape("device_name must not be None if predictor_singleton is None.")):
-        rl.helper.qcompile(qc, "expected_fidelity", None)
+        rl.helper.qcompile(qc, None)

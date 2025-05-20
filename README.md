@@ -17,15 +17,26 @@
 
 # MQT Predictor: Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing
 
-MQT Predictor is a framework that allows one to automatically select a suitable quantum device for a particular application and provides an optimized compiler for the selected device.
-It not only supports end-users in navigating the vast landscape of choices, it also allows to mix-and-match compiler passes from various tools to create optimized compilers that transcend the individual tools.
-Evaluations on more than 500 quantum circuits and seven devices have shown that—compared to Qiskit's and TKET's most optimized compilation flows—the MQT Predictor yields circuits with an expected fidelity that is on par with the best possible result that could be achieved by trying out all combinations of devices and compilers and even achieves a similar performance when considering the critical depth as an alternative figure of merit.
+MQT Predictor is a framework that allows one to automatically select a suitable quantum device for a particular
+application and provides an optimized compiler for the selected device.
+It not only supports end-users in navigating the vast landscape of choices, it also allows to mix-and-match compiler
+passes from various tools to create optimized compilers that transcend the individual tools.
+Evaluations on more than 500 quantum circuits and seven devices have shown that—compared to Qiskit's and TKET's most
+optimized compilation flows—the MQT Predictor yields circuits with an expected fidelity that is on par with the best
+possible result that could be achieved by trying out all combinations of devices and compilers and even achieves a
+similar performance when considering the critical depth as an alternative figure of merit.
 
 Therefore, MQT Predictor tackles this problem from two angles:
 
-1. It provides a method (based on Reinforcement Learning) that produces device-specific quantum circuit compilers by combining compilation passes from various compiler tools and learning optimized sequences of those passes with respect to a customizable figure of merit). This mix-and-match of compiler passes from various tools allows one to eliminate vendor locks and to create optimized compilers that transcend the individual tools.
+1. It provides a method (based on Reinforcement Learning) that produces device-specific quantum circuit compilers by
+   combining compilation passes from various compiler tools and learning optimized sequences of those passes with
+   respect to a customizable figure of merit). This mix-and-match of compiler passes from various tools allows one to
+   eliminate vendor locks and to create optimized compilers that transcend the individual tools.
 
-2. It provides a prediction method (based on Supervised Machine Learning) that, without performing any compilation, automatically predicts the most suitable device for a given application. This completely eliminates the manual and laborious task of determining a suitable target device and guides end-users through the vast landscape of choices without the need for quantum computing expertise.
+2. It provides a prediction method (based on Supervised Machine Learning) that, without performing any compilation,
+   automatically predicts the most suitable device for a given application. This completely eliminates the manual and
+   laborious task of determining a suitable target device and guides end-users through the vast landscape of choices
+   without the need for quantum computing expertise.
 
 <p align="center">
 <picture>
@@ -41,9 +52,12 @@ For more details, please refer to:
   </a>
 </p>
 
-MQT Predictor is part of the [Munich Quantum Toolkit (MQT)](https://mqt.readthedocs.io/) developed by the [Chair for Design Automation](https://www.cda.cit.tum.de/) at the [Technical University of Munich](https://www.tum.de/).
+MQT Predictor is part of the [Munich Quantum Toolkit (MQT)](https://mqt.readthedocs.io/) developed by
+the [Chair for Design Automation](https://www.cda.cit.tum.de/) at
+the [Technical University of Munich](https://www.tum.de/).
 
-If you have any questions, feel free to create a [discussion](https://github.com/cda-tum/mqt-predictor/discussions) or an [issue](https://github.com/cda-tum/mqt-predictor/issues) on [GitHub](https://github.com/cda-tum/mqt-predictor).
+If you have any questions, feel free to create a [discussion](https://github.com/cda-tum/mqt-predictor/discussions) or
+an [issue](https://github.com/cda-tum/mqt-predictor/issues) on [GitHub](https://github.com/cda-tum/mqt-predictor).
 
 ## Getting Started
 
@@ -84,17 +98,18 @@ print(qc_compiled.draw())
 
 ## References
 
-In case you are using MQT Predictor in your work, we would be thankful if you referred to it by citing the following publication:
+In case you are using MQT Predictor in your work, we would be thankful if you referred to it by citing the following
+publication:
 
 ```bibtex
 @ARTICLE{quetschlich2025mqtpredictor,
-    AUTHOR      = {N. Quetschlich and L. Burgholzer and R. Wille},
-    TITLE       = {{MQT Predictor: Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing}},
-    YEAR        = {2025},
-    JOURNAL     = {ACM Transactions on Quantum Computing (TQC)},
-    DOI         = {10.1145/3673241},
-    EPRINT      = {2310.06889},
-    EPRINTTYPE  = {arxiv},
+    AUTHOR = {N. Quetschlich and L. Burgholzer and R. Wille},
+    TITLE = {{MQT Predictor: Automatic Device Selection with Device-Specific Circuit Compilation for Quantum Computing}},
+    YEAR = {2025},
+    JOURNAL = {ACM Transactions on Quantum Computing (TQC)},
+    DOI = {10.1145/3673241},
+    EPRINT = {2310.06889},
+    EPRINTTYPE = {arxiv},
 }
 ```
 

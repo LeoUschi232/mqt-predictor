@@ -16,7 +16,7 @@ from mqt.predictor import ml
 
 def test_predictor_with_all_devices() -> None:
     """Test the prediction of the device for a given figure of merit with all available devices."""
-    predictor = ml.Predictor(figure_of_merit="expected_fidelity", devices=None)
+    predictor = ml.Predictor()
     assert len(predictor.devices) > 0
 
 
@@ -24,7 +24,7 @@ def test_predictor_with_all_devices() -> None:
 @pytest.fixture
 def predictor() -> ml.Predictor:
     """Return the predictor."""
-    return ml.Predictor(figure_of_merit="expected_fidelity", devices=["ionq_harmony"])
+    return ml.Predictor(devices=["ionq_harmony"])
 
 
 @pytest.fixture
@@ -62,13 +62,9 @@ def test_generate_training_data(predictor: ml.Predictor, source_path: Path, targ
     # generate compiled circuits using trained RL model
     if sys.platform == "win32":
         with pytest.warns(RuntimeWarning, match=re.escape("Timeout is not supported on Windows.")):
-            predictor.generate_compiled_circuits(
-                timeout=600, target_path=target_path, source_path=source_path, num_workers=1
-            )
+            predictor.generate_compiled_circuits(target_path=target_path, source_path=source_path, num_workers=1)
     else:
-        predictor.generate_compiled_circuits(
-            timeout=600, target_path=target_path, source_path=source_path, num_workers=1
-        )
+        predictor.generate_compiled_circuits(target_path=target_path, source_path=source_path, num_workers=1)
 
 
 def test_save_training_data(predictor: ml.Predictor, source_path: Path, target_path: Path) -> None:
@@ -93,7 +89,7 @@ def test_save_training_data(predictor: ml.Predictor, source_path: Path, target_p
 
 def test_train_random_forest_classifier_and_predict(predictor: ml.Predictor, source_path: Path) -> None:
     """Test the training of the random forest classifier."""
-    predictor.train_random_forest_classifier(save_classifier=True)
+    predictor.train_random_forest_classifier()
     qc = get_benchmark("ghz", 1, 3)
     predicted_dev = ml.predict_device_for_figure_of_merit(qc)
     assert predicted_dev in mqt.bench.devices.get_available_devices()
@@ -108,7 +104,8 @@ def test_train_random_forest_classifier_and_predict(predictor: ml.Predictor, sou
     assert predicted_dev in mqt.bench.devices.get_available_devices()
 
     with pytest.raises(
-        FileNotFoundError, match=re.escape("The ML model is not trained yet. Please train the model before using it.")
+            FileNotFoundError,
+            match=re.escape("The ML model is not trained yet. Please train the model before using it.")
     ):
         ml.predict_device_for_figure_of_merit(qc=qc, figure_of_merit="false_input")  # type: ignore[arg-type]
 
@@ -134,6 +131,7 @@ def test_predict_device_for_figure_of_merit_no_suitable_device() -> None:
     num_qubits = 100
     qc = get_benchmark("ghz", 1, num_qubits)
     with pytest.raises(
-        ValueError, match=re.escape(f"No suitable device found for the given quantum circuit with {num_qubits} qubits.")
+            ValueError,
+            match=re.escape(f"No suitable device found for the given quantum circuit with {num_qubits} qubits.")
     ):
         ml.predict_device_for_figure_of_merit(qc)

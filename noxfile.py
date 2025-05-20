@@ -12,10 +12,8 @@ import nox
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
-
 nox.needs_version = ">=2024.3.2"
 nox.options.default_venv_backend = "uv|virtualenv"
-
 
 PYTHON_ALL_VERSIONS = ["3.10", "3.11", "3.12"]
 
@@ -39,11 +37,11 @@ def lint(session: nox.Session) -> None:
 
 
 def _run_tests(
-    session: nox.Session,
-    *,
-    install_args: Sequence[str] = (),
-    run_args: Sequence[str] = (),
-    extras: Sequence[str] = (),
+        session: nox.Session,
+        *,
+        install_args: Sequence[str] = (),
+        run_args: Sequence[str] = (),
+        extras: Sequence[str] = (),
 ) -> None:
     posargs = list(session.posargs)
     env = {"PIP_DISABLE_PIP_VERSION_CHECK": "1"}

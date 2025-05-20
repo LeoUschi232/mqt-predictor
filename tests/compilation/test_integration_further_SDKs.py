@@ -97,7 +97,7 @@ def test_bqskit_mapping_action_swaps_necessary() -> None:
 
 
 def check_mapped_circuit(
-    initial_qc: QuantumCircuit, mapped_qc: QuantumCircuit, device: Device, layout: TranspileLayout
+        initial_qc: QuantumCircuit, mapped_qc: QuantumCircuit, device: Device, layout: TranspileLayout
 ) -> None:
     """Check if the mapped quantum circuit is correctly mapped to the device."""
     # check if the altered circuit is correctly mapped to the device
