@@ -39,7 +39,7 @@ class PredictorEnv(Env):  # type: ignore[misc]
     """Predictor environment for reinforcement learning."""
 
     def __init__(
-        self, reward_function: reward.figure_of_merit = "expected_fidelity", device_name: str = "ibm_washington"
+            self, reward_function: reward.figure_of_merit = "expected_fidelity", device_name: str = "ibm_washington"
     ) -> None:
         """Initializes the PredictorEnv object."""
         logger.info("Init env: " + reward_function)
@@ -171,10 +171,10 @@ class PredictorEnv(Env):  # type: ignore[misc]
         print(self.state.draw())
 
     def reset(
-        self,
-        qc: Path | str | QuantumCircuit | None = None,
-        seed: int | None = None,
-        options: dict[str, Any] | None = None,  # noqa: ARG002
+            self,
+            qc: Path | str | QuantumCircuit | None = None,
+            seed: int | None = None,
+            options: dict[str, Any] | None = None,  # noqa: ARG002
     ) -> tuple[QuantumCircuit, dict[str, Any]]:
         """Resets the environment to the given state or a random state.
 
@@ -269,10 +269,10 @@ class PredictorEnv(Env):  # type: ignore[misc]
                     self.error_occurred = True
                     return None
                 if (
-                    action_index
-                    in self.actions_layout_indices
-                    + self.actions_mapping_indices
-                    + self.actions_final_optimization_indices
+                        action_index
+                        in self.actions_layout_indices
+                        + self.actions_mapping_indices
+                        + self.actions_final_optimization_indices
                 ):
                     if action["name"] == "VF2PostLayout":
                         assert pm.property_set["VF2PostLayout_stop_reason"] is not None
