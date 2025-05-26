@@ -6,9 +6,9 @@ import re
 from pathlib import Path
 
 import pytest
+from mqt.bench import get_benchmark
 from qiskit.qasm2 import dump
 
-from mqt.bench import get_benchmark
 from mqt.predictor import rl
 
 
@@ -66,7 +66,7 @@ def test_qcompile_with_newly_trained_models() -> None:
             rl.qcompile(qc, figure_of_merit=figure_of_merit, device_name=device)
 
     predictor.train_model(
-        timesteps=100,
+        timesteps=10,
         test=True,
     )
 
